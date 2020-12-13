@@ -39,7 +39,8 @@ import android.widget.Toast;
 public class Settings extends AppCompatActivity {
 
       Button btPicker,btHistory;
-      TextView textview;
+    Button startService, stopService;
+    TextView textview;
       int PLACE_PICKER_REQUEST = 1;
 //---------------------NOTIFICATION---------------------
       private TextView textView;
@@ -92,6 +93,10 @@ public class Settings extends AppCompatActivity {
 
           ActionBar actionBar = getSupportActionBar();
           actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_background));
+
+          startService = findViewById(R.id.startService);
+          stopService = findViewById(R.id.stopService);
+
 
           textView = (TextView) findViewById(R.id.textView);
           progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -147,6 +152,22 @@ public class Settings extends AppCompatActivity {
               public void onClick(View v) {
                   Intent i = new Intent(getApplicationContext(),History.class);
                   startActivity(i);
+              }
+          });
+
+          startService.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  System.out.println("pressed");
+
+                  startService(new Intent(getApplicationContext(), BackgroundService.class));
+              }
+          });
+
+          stopService.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  stopService(new Intent(getApplicationContext(), BackgroundService.class));
               }
           });
 
@@ -213,5 +234,7 @@ public class Settings extends AppCompatActivity {
               }
           }
       }
+
+
   }
 

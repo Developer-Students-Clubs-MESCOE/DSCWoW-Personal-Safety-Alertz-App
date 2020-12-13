@@ -56,6 +56,11 @@ public class LocationTrack extends Service implements LocationListener {
         getLocation();
     }
 
+    public LocationTrack(BackgroundService mContext) {
+        this.mContext = mContext;
+        getLocation();
+    }
+
     private Location getLocation() {
 
         try {
