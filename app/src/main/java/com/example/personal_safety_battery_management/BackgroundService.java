@@ -109,7 +109,7 @@ public class BackgroundService extends Service {
         super.onDestroy();
     }
 
-    private int batterylevel(){
+    private void batterylevel(){
         BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

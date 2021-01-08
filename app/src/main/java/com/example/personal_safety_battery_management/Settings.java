@@ -38,30 +38,23 @@ import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
-      Button btPicker,btHistory;
-    Button startService, stopService;
+    Button btPicker,btHistory;
     TextView textview;
-      int PLACE_PICKER_REQUEST = 1;
-//---------------------NOTIFICATION---------------------
-      private TextView textView;
-      private ProgressBar progressBar;
-      private SeekBar seekBar;
+    int PLACE_PICKER_REQUEST = 1;
+    //---------------------NOTIFICATION---------------------
+    private TextView textView;
+    private ProgressBar progressBar;
+    private SeekBar seekBar;
 
     /*/--battery declaration-----
         int isCharging;
-
         static int battery_level=0;
         private Ringtone ringtone;
-
-
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.registerReceiver(null, ifilter);
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging=status == BatteryManager.BATTERY_STATUS_CHARGING ||
                 status == BatteryManager.BATTERY_STATUS_FULL;
-
-
-
     public void batterylevel(){
         BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
             @Override
@@ -82,40 +75,36 @@ public class Settings extends AppCompatActivity {
     }
 */
     //private TextView battery;
-      Switch aSwitch;
-      @Override
-      protected void onCreate(Bundle savedInstanceState) {
-          super.onCreate(savedInstanceState);
-          //ringtone = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-          setContentView(R.layout.activity_settings);
+    Switch aSwitch;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //ringtone = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+        setContentView(R.layout.activity_settings);
 
 
 
-          ActionBar actionBar = getSupportActionBar();
-          actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_background));
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_background));
 
-          startService = findViewById(R.id.startService);
-          stopService = findViewById(R.id.stopService);
+        textView = (TextView) findViewById(R.id.textView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressBar.setProgress(progress);
+                textView.setText("" + progress + "%");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-
-          textView = (TextView) findViewById(R.id.textView);
-          progressBar = (ProgressBar) findViewById(R.id.progressBar);
-          seekBar = (SeekBar) findViewById(R.id.seekBar);
-          seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-              @Override
-              public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                  progressBar.setProgress(progress);
-                  textView.setText("" + progress + "%");
-              }
-              @Override
-              public void onStartTrackingTouch(SeekBar seekBar) {
-              }
-              @Override
-              public void onStopTrackingTouch(SeekBar seekBar) {
-              }
-          });
-
-          //---------------------CHARGING ALERT-----------------
+        //---------------------CHARGING ALERT-----------------
 
 
 
@@ -125,116 +114,97 @@ public class Settings extends AppCompatActivity {
 
 
 
-          //----------------LOCATION PICKER---------------------
+        //----------------LOCATION PICKER---------------------
 
-          btPicker = findViewById(R.id.bt_picker);
-          btHistory = findViewById(R.id.bt_history);
-          textview = findViewById(R.id.text_view);
+        btPicker = findViewById(R.id.bt_picker);
+        btHistory = findViewById(R.id.bt_history);
+        textview = findViewById(R.id.text_view);
 
-          btPicker.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                  try {
-                      startActivityForResult(builder.build(Settings.this),
-                              PLACE_PICKER_REQUEST);
-                  } catch (GooglePlayServicesRepairableException e) {
-                      e.printStackTrace();
-                  } catch (GooglePlayServicesNotAvailableException e) {
-                      e.printStackTrace();
-                  }
+        btPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(Settings.this),
+                            PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
 
-              }
-          });
+            }
+        });
 
-          btHistory.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  Intent i = new Intent(getApplicationContext(),History.class);
-                  startActivity(i);
-              }
-          });
-
-          startService.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  System.out.println("pressed");
-
-                  startService(new Intent(getApplicationContext(), BackgroundService.class));
-              }
-          });
-
-          stopService.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  stopService(new Intent(getApplicationContext(), BackgroundService.class));
-              }
-          });
+        btHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),History.class);
+                startActivity(i);
+            }
+        });
 
 
-          //-----------------------BOTTOM NAVIGATION---------------------------
+        //-----------------------BOTTOM NAVIGATION---------------------------
 
-          BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-          bottomNavigationView.setSelectedItemId(R.id.settings);
+        bottomNavigationView.setSelectedItemId(R.id.settings);
 
-          bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-              @Override
-              public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                  switch (menuItem.getItemId()) {
-                      case R.id.dashboard:
-                          startActivity(new Intent(getApplicationContext(),
-                                  Dashboard.class));
-                          overridePendingTransition(0, 0);
-                          return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.dashboard:
+                        startActivity(new Intent(getApplicationContext(),
+                                Dashboard.class));
+                        overridePendingTransition(0, 0);
+                        return true;
 
-                      case R.id.about:
-                          startActivity(new Intent(getApplicationContext(),
-                                  About.class));
-                          overridePendingTransition(0, 0);
-                          return true;
+                    case R.id.about:
+                        startActivity(new Intent(getApplicationContext(),
+                                About.class));
+                        overridePendingTransition(0, 0);
+                        return true;
 
-                      case R.id.settings:
-                          return true;
+                    case R.id.settings:
+                        return true;
 
-                      case R.id.description:
-                          startActivity(new Intent(getApplicationContext(),
-                                  Description.class));
-                          overridePendingTransition(0, 0);
-                          return true;
+                    case R.id.description:
+                        startActivity(new Intent(getApplicationContext(),
+                                Description.class));
+                        overridePendingTransition(0, 0);
+                        return true;
 
-                      case R.id.close_friends:
-                          startActivity(new Intent(getApplicationContext(),
-                                  Close_Friends.class));
-                          overridePendingTransition(0, 0);
-                          return true;
-                  }
-                  return false;
-              }
-          });
-      }
+                    case R.id.close_friends:
+                        startActivity(new Intent(getApplicationContext(),
+                                Close_Friends.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
 
-      @Override
-      protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-          if(requestCode==PLACE_PICKER_REQUEST){
-              if(resultCode==RESULT_OK){
-                  Place place = PlacePicker.getPlace(data, this);
-                  StringBuilder stringBuilder = new StringBuilder();
-                  String latitude = String.valueOf(place.getLatLng().latitude);
-                  String longitude = String.valueOf(place.getLatLng().longitude);
-                  stringBuilder.append("LATITUDE: ");
-                  stringBuilder.append(latitude);
-                  stringBuilder.append("\nLONGITUDE: ");
-                  stringBuilder.append(longitude);
-                  textview.setText(stringBuilder.toString());
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode==PLACE_PICKER_REQUEST){
+            if(resultCode==RESULT_OK){
+                Place place = PlacePicker.getPlace(data, this);
+                StringBuilder stringBuilder = new StringBuilder();
+                String latitude = String.valueOf(place.getLatLng().latitude);
+                String longitude = String.valueOf(place.getLatLng().longitude);
+                stringBuilder.append("LATITUDE: ");
+                stringBuilder.append(latitude);
+                stringBuilder.append("\nLONGITUDE: ");
+                stringBuilder.append(longitude);
+                textview.setText(stringBuilder.toString());
 
 
 
 
-              }
-          }
-      }
-
-
-  }
-
+            }
+        }
+    }
+}

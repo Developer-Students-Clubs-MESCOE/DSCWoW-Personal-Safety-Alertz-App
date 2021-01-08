@@ -7,16 +7,8 @@
     tools:context=".Settings"
     android:background="@drawable/gradient_background">
 
-    <ScrollView android:layout_marginTop="30dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView">
 
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
 
     <TextView
         android:id="@+id/loc"
@@ -36,13 +28,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
         android:text="View Alert History"
         android:textColor="#ffffff"
         android:background="@drawable/gradient_background2"
         android:layout_marginHorizontal="115dp"
-        android:layout_marginVertical="50dp"
         android:padding="10dp"
         android:elevation="30dp"
         android:visibility="visible"
@@ -52,55 +43,53 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true"
         android:text="Residential Location"
         android:textColor="#ffffff"
         android:background="@drawable/gradient_background2"
-        android:layout_marginHorizontal="115dp"
-        android:layout_marginVertical="50dp"
         android:padding="10dp"
         android:elevation="30dp"
         android:visibility="visible"
         tools:visibility="visible"
         android:id="@+id/bt_picker" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/text_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_marginTop="500dp"-->
-<!--        android:gravity="center"-->
-<!--        android:textSize="30sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/text_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginTop="500dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:textSize="30sp" />-->
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         android:layout_width="350dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="450dp"
         android:layout_height="145dp"
         android:layout_centerHorizontal="true">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:text="Send auto alert when battery reaches:"
-        android:textIsSelectable="true"
-        android:textColor="#000000"
-        android:textSize="22dp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Send auto alert when battery reaches:"
+            android:textIsSelectable="true"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/progressBar"
-        android:layout_marginLeft="100dp"
-         android:layout_marginTop="47dp"
-        android:text="0%"
-        android:textSize="25sp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/progressBar"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="47dp"
+            android:text="0%"
+            android:textSize="25sp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -110,56 +99,17 @@
             android:layout_above="@id/seekBar"
             android:layout_marginTop="100dp"
             android:paddingHorizontal="15dp" />
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_centerVertical="true" />
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_centerVertical="true" />
 
 
     </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="69dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="80dp"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="20dp">
-
-            <Button
-                android:id="@+id/startService"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/gradient_background2"
-                android:elevation="30dp"
-                android:padding="10dp"
-                android:text="Start Service"
-                android:textColor="#ffffff"
-                android:visibility="visible"
-                tools:visibility="visible" />
-
-            <Button
-                android:id="@+id/stopService"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/gradient_background2"
-                android:elevation="30dp"
-                android:padding="10dp"
-                android:text="Stop Service"
-                android:textColor="#ffffff"
-                android:visibility="visible"
-                tools:visibility="visible" />
 
 
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
